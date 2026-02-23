@@ -1,0 +1,59 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configurations and scripts you may want to
+# customize. In general, it should not be checked into source control, so it is
+# recommended to add it to your .gitignore.
+# For more information: https://nicedoc.io/microsoft/vscode-dot-files/docs/User-Guide#sharing-settings
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication logging
+symbolication/
+
+# Android related
+**/android/**/generated/
+**/android/gen/
+**/android/out/
+
+# iOS related
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/App.framework
+**/ios/Flutter/App.podspec
+**/ios/Flutter/App.framework.zip
+**/ios/Flutter/App.framework.dSYM.zip
+**/ios/ServiceDefinitions.json
+**/Pods/
+**/Manifest.lock
+**/DerivedData/
+**/Runner.xcworkspace/xcuserdata/
+**/Runner.xcodeproj/project.xcworkspace/
+**/Runner.xcodeproj/xcuserdata/
+
+# Web related
+.web_assets/

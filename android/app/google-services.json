@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "543201618558",
+    "project_id": "tesishors-v1",
+    "storage_bucket": "tesishors-v1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543201618558:android:965d3ad09f98faac0e462f",
+        "android_client_info": {
+          "package_name": "com.mycompany.tesisfront1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543201618558-nm0qpi6fju21sg0hga0a6dg4gqc9bcrn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.tesisfront1",
+            "certificate_hash": "5dd8c2ec97a2b105044022dfebe5a8137c016dd9"
+          }
+        },
+        {
+          "client_id": "543201618558-qp03annmvtbcaf1pvo2b4g511njjfqfg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.tesisfront1",
+            "certificate_hash": "8c8e90d259b1229d2ddd342e61ac6d659eafd932"
+          }
+        },
+        {
+          "client_id": "543201618558-vsqtgm102kaslbkdhbq3al7cvg6cie24.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.tesisfront1",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "543201618558-m1ha33is2ht5j6r8lp19j0586p6nstao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3r6HCzd_t1GqK_57OJBk2YMoN693xnoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543201618558-m1ha33is2ht5j6r8lp19j0586p6nstao.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "543201618558-83ujf5k52ftr2mvbbc57bh7ar0h4o0m9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.tesisfront1test"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:543201618558:android:b53bc99b57b6fec50e462f",
+        "android_client_info": {
+          "package_name": "com.mycompany.tesisfront1test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "543201618558-30ltfvhiltiqvp8bmd8mubj25n2eb0bd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.tesisfront1test",
+            "certificate_hash": "5dd8c2ec97a2b105044022dfebe5a8137c016dd9"
+          }
+        },
+        {
+          "client_id": "543201618558-jsq8mst00m9kggjoican6k484jor8qvm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.tesisfront1test",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "543201618558-n5nmf6nuj11vojqa6df5ejapvqbod5mp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.tesisfront1test",
+            "certificate_hash": "148b21bb85df8042e2edce2b34a3c2e738779807"
+          }
+        },
+        {
+          "client_id": "543201618558-m1ha33is2ht5j6r8lp19j0586p6nstao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3r6HCzd_t1GqK_57OJBk2YMoN693xnoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "543201618558-m1ha33is2ht5j6r8lp19j0586p6nstao.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "543201618558-83ujf5k52ftr2mvbbc57bh7ar0h4o0m9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.tesisfront1test"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,92 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "Publicacion_Market",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoDuenio",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Fecha_Publicacion",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Publicacion_Market",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Destacado",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "CorreoDuenio",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Evento_Calendario",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoUsuario",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "FechaHora",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Transaccion",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoUsuario",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "FechaHoraRegistro",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Equino",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "CorreoDuenio",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Fecha_Registro",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "MedicoVeterinario",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Correo_Usuario",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Apellido",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "Nombre",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
