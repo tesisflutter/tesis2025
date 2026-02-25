@@ -174,6 +174,7 @@ class _PaginaSeguimientoGastosWidgetState
               _model.gastosSeleccionados = true;
               _model.ordenLista = 'Más recientes';
               _model.fechaElegida = getCurrentTimestamp;
+              _model.sinResultadosParaMesAnio = false;
               safeSetState(() {});
 
               safeSetState(() {});
@@ -291,71 +292,9 @@ class _PaginaSeguimientoGastosWidgetState
                           locale: FFLocalizations.of(context).languageCode,
                         ),
                       ),
-                      options: _model.dropAnioValue ==
-                              dateTimeFormat(
-                                "y",
-                                _model.fechaPrimeraTransaccion,
-                                locale:
-                                    FFLocalizations.of(context).languageCode,
-                              )
-                          ? functions.obtenerMesesRestantesFechaDada(
-                              _model.fechaPrimeraTransaccion!)
-                          : MesesAnioEnum.values.map((e) => e.name).toList(),
+                      options: MesesAnioEnum.values.map((e) => e.name).toList(),
                       onChanged: (val) async {
                         safeSetState(() => _model.dropMesValue = val);
-                        _model.fechaElegida =
-                            functions.obtenerFechaDadoMesYAnio(
-                                _model.dropMesValue!, _model.dropAnioValue!);
-                        _model.transaccionesMesOutputCambioMes =
-                            await queryTransaccionRecordOnce(
-                          queryBuilder: (transaccionRecord) => transaccionRecord
-                              .where(
-                                'CorreoUsuario',
-                                isEqualTo: FFAppState().correoUsuarioLogueado,
-                              )
-                              .where(
-                                'FechaHoraRegistro',
-                                isGreaterThanOrEqualTo:
-                                    functions.obtenerFechaInicioMesCorriente(
-                                        _model.fechaElegida!),
-                              )
-                              .where(
-                                'FechaHoraRegistro',
-                                isLessThan: functions.obtenerFechaInicioProxMes(
-                                    _model.fechaElegida!),
-                              ),
-                        );
-                        _model.balancePositivo =
-                            functions.calcularBalancePositivo(_model
-                                .transaccionesMesOutputCambioMes!
-                                .toList());
-                        _model.balanceNegativo =
-                            functions.calcularBalanceNegativo(_model
-                                .transaccionesMesOutputCambioMes!
-                                .toList());
-                        _model.balanceNetoSTATE = functions.calcularBalanceNeto(
-                            _model.transaccionesMesOutputCambioMes!.toList());
-                        _model.listaTransaccionesMesCorrienteSTATE = _model
-                            .transaccionesMesOutputCambioMes!
-                            .toList()
-                            .cast<TransaccionRecord>();
-                        _model.listaMontosYCategorias = functions
-                            .agruparMontosPorCategorias(_model
-                                .transaccionesMesOutputCambioMes!
-                                .toList())
-                            .toList()
-                            .cast<DuplaMontoCategoriaStruct>();
-                        _model.listaCategoriasSeleccionadas = _model
-                            .listaMontosYCategorias
-                            .map((e) => e.categoria)
-                            .toList()
-                            .cast<String>();
-                        _model.ingresosSeleccionado = true;
-                        _model.gastosSeleccionados = true;
-                        _model.ordenLista = 'Más reciente';
-                        safeSetState(() {});
-
-                        safeSetState(() {});
                       },
                       width: 125.0,
                       height: 40.0,
@@ -408,59 +347,6 @@ class _PaginaSeguimientoGastosWidgetState
                       options: _model.listaAniosDesdeFechaPrimeraTransaccion,
                       onChanged: (val) async {
                         safeSetState(() => _model.dropAnioValue = val);
-                        _model.fechaElegida =
-                            functions.obtenerFechaDadoMesYAnio(
-                                _model.dropMesValue!, _model.dropAnioValue!);
-                        _model.transaccionesMesOutpuCambioAnio =
-                            await queryTransaccionRecordOnce(
-                          queryBuilder: (transaccionRecord) => transaccionRecord
-                              .where(
-                                'CorreoUsuario',
-                                isEqualTo: FFAppState().correoUsuarioLogueado,
-                              )
-                              .where(
-                                'FechaHoraRegistro',
-                                isGreaterThanOrEqualTo:
-                                    functions.obtenerFechaInicioMesCorriente(
-                                        _model.fechaElegida!),
-                              )
-                              .where(
-                                'FechaHoraRegistro',
-                                isLessThan: functions.obtenerFechaInicioProxMes(
-                                    _model.fechaElegida!),
-                              ),
-                        );
-                        _model.balancePositivo =
-                            functions.calcularBalancePositivo(_model
-                                .transaccionesMesOutpuCambioAnio!
-                                .toList());
-                        _model.balanceNegativo =
-                            functions.calcularBalanceNegativo(_model
-                                .transaccionesMesOutpuCambioAnio!
-                                .toList());
-                        _model.balanceNetoSTATE = functions.calcularBalanceNeto(
-                            _model.transaccionesMesOutpuCambioAnio!.toList());
-                        _model.listaTransaccionesMesCorrienteSTATE = _model
-                            .transaccionesMesOutpuCambioAnio!
-                            .toList()
-                            .cast<TransaccionRecord>();
-                        _model.listaMontosYCategorias = functions
-                            .agruparMontosPorCategorias(_model
-                                .transaccionesMesOutpuCambioAnio!
-                                .toList())
-                            .toList()
-                            .cast<DuplaMontoCategoriaStruct>();
-                        _model.listaCategoriasSeleccionadas = _model
-                            .listaMontosYCategorias
-                            .map((e) => e.categoria)
-                            .toList()
-                            .cast<String>();
-                        _model.ingresosSeleccionado = true;
-                        _model.gastosSeleccionados = true;
-                        _model.ordenLista = 'Más reciente';
-                        safeSetState(() {});
-
-                        safeSetState(() {});
                       },
                       width: 125.0,
                       height: 40.0,
@@ -506,13 +392,171 @@ class _PaginaSeguimientoGastosWidgetState
                       buttonSize: 40.0,
                       fillColor: FlutterFlowTheme.of(context).primary,
                       icon: Icon(
-                        Icons.restart_alt,
+                        Icons.play_arrow_rounded,
                         color: FlutterFlowTheme.of(context).info,
                         size: 24.0,
                       ),
-                      onPressed: () {
-                        print('iconBtn_resetearFecha pressed ...');
+                      onPressed: () async {
+                        _model.mesBuscado = _model.dropMesValue;
+                        _model.anioBuscado = _model.dropAnioValue;
+                        _model.fechaElegida =
+                            functions.obtenerFechaDadoMesYAnio(
+                                _model.dropMesValue!, _model.dropAnioValue!);
+                        _model.transaccionesMesOutputPlayButton =
+                            await queryTransaccionRecordOnce(
+                          queryBuilder: (transaccionRecord) => transaccionRecord
+                              .where(
+                                'CorreoUsuario',
+                                isEqualTo: FFAppState().correoUsuarioLogueado,
+                              )
+                              .where(
+                                'FechaHoraRegistro',
+                                isGreaterThanOrEqualTo:
+                                    functions.obtenerFechaInicioMesCorriente(
+                                        _model.fechaElegida!),
+                              )
+                              .where(
+                                'FechaHoraRegistro',
+                                isLessThan: functions.obtenerFechaInicioProxMes(
+                                    _model.fechaElegida!),
+                              ),
+                        );
+                        if (_model.transaccionesMesOutputPlayButton != null &&
+                            _model.transaccionesMesOutputPlayButton!.isNotEmpty) {
+                          _model.sinResultadosParaMesAnio = false;
+                          _model.listaTransaccionesMesCorrienteSTATE = _model
+                              .transaccionesMesOutputPlayButton!
+                              .toList()
+                              .cast<TransaccionRecord>();
+                          _model.balancePositivo =
+                              functions.calcularBalancePositivo(
+                                  _model.listaTransaccionesMesCorrienteSTATE.toList());
+                          _model.balanceNegativo =
+                              functions.calcularBalanceNegativo(
+                                  _model.listaTransaccionesMesCorrienteSTATE.toList());
+                          _model.balanceNetoSTATE =
+                              functions.calcularBalanceNeto(
+                                  _model.listaTransaccionesMesCorrienteSTATE.toList());
+                          _model.listaMontosYCategorias = functions
+                              .agruparMontosPorCategorias(
+                                  _model.transaccionesMesOutputPlayButton!.toList())
+                              .toList()
+                              .cast<DuplaMontoCategoriaStruct>();
+                          _model.listaCategoriasSeleccionadas = _model
+                              .listaMontosYCategorias
+                              .map((e) => e.categoria)
+                              .toList()
+                              .cast<String>();
+                          _model.chkCategoriaValueMap = {};
+                          _model.ingresosSeleccionado = true;
+                          _model.gastosSeleccionados = true;
+                          _model.ordenLista = 'Más reciente';
+                        } else {
+                          _model.sinResultadosParaMesAnio = true;
+                          _model.listaTransaccionesMesCorrienteSTATE = [];
+                          _model.listaMontosYCategorias = [];
+                          _model.listaCategoriasSeleccionadas = [];
+                          _model.balancePositivo = 0.0;
+                          _model.balanceNegativo = 0.0;
+                          _model.balanceNetoSTATE = 0.0;
+                        }
+                        safeSetState(() {});
                       },
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                      child: FlutterFlowIconButton(
+                        borderRadius: 8.0,
+                        buttonSize: 40.0,
+                        fillColor: FlutterFlowTheme.of(context).primary,
+                        icon: Icon(
+                          Icons.restart_alt,
+                          color: FlutterFlowTheme.of(context).info,
+                          size: 24.0,
+                        ),
+                        onPressed: () async {
+                          // Reset dropdowns to current month/year
+                          final currentMonth = dateTimeFormat(
+                            "LLLL",
+                            getCurrentTimestamp,
+                            locale: FFLocalizations.of(context).languageCode,
+                          );
+                          final currentYear = dateTimeFormat(
+                            "y",
+                            getCurrentTimestamp,
+                            locale: FFLocalizations.of(context).languageCode,
+                          );
+                          safeSetState(() {
+                            _model.dropMesValue = currentMonth;
+                            _model.dropMesValueController?.value = currentMonth;
+                            _model.dropAnioValue = currentYear;
+                            _model.dropAnioValueController?.value = currentYear;
+                          });
+                          // Load logs for current month/year
+                          _model.mesBuscado = currentMonth;
+                          _model.anioBuscado = currentYear;
+                          _model.fechaElegida = getCurrentTimestamp;
+                          _model.transaccionesMesOutputPlayButton =
+                              await queryTransaccionRecordOnce(
+                            queryBuilder: (transaccionRecord) => transaccionRecord
+                                .where(
+                                  'CorreoUsuario',
+                                  isEqualTo: FFAppState().correoUsuarioLogueado,
+                                )
+                                .where(
+                                  'FechaHoraRegistro',
+                                  isGreaterThanOrEqualTo:
+                                      functions.obtenerFechaInicioMesCorriente(
+                                          getCurrentTimestamp),
+                                )
+                                .where(
+                                  'FechaHoraRegistro',
+                                  isLessThan: functions.obtenerFechaInicioProxMes(
+                                      getCurrentTimestamp),
+                                ),
+                          );
+                          if (_model.transaccionesMesOutputPlayButton != null &&
+                              _model.transaccionesMesOutputPlayButton!.isNotEmpty) {
+                            _model.sinResultadosParaMesAnio = false;
+                            _model.listaTransaccionesMesCorrienteSTATE = _model
+                                .transaccionesMesOutputPlayButton!
+                                .toList()
+                                .cast<TransaccionRecord>();
+                            _model.balancePositivo =
+                                functions.calcularBalancePositivo(
+                                    _model.listaTransaccionesMesCorrienteSTATE.toList());
+                            _model.balanceNegativo =
+                                functions.calcularBalanceNegativo(
+                                    _model.listaTransaccionesMesCorrienteSTATE.toList());
+                            _model.balanceNetoSTATE =
+                                functions.calcularBalanceNeto(
+                                    _model.listaTransaccionesMesCorrienteSTATE.toList());
+                            _model.listaMontosYCategorias = functions
+                                .agruparMontosPorCategorias(
+                                    _model.transaccionesMesOutputPlayButton!.toList())
+                                .toList()
+                                .cast<DuplaMontoCategoriaStruct>();
+                            _model.listaCategoriasSeleccionadas = _model
+                                .listaMontosYCategorias
+                                .map((e) => e.categoria)
+                                .toList()
+                                .cast<String>();
+                            _model.chkCategoriaValueMap = {};
+                            _model.ingresosSeleccionado = true;
+                            _model.gastosSeleccionados = true;
+                            _model.ordenLista = 'Más reciente';
+                          } else {
+                            _model.sinResultadosParaMesAnio = true;
+                            _model.listaTransaccionesMesCorrienteSTATE = [];
+                            _model.listaMontosYCategorias = [];
+                            _model.listaCategoriasSeleccionadas = [];
+                            _model.balancePositivo = 0.0;
+                            _model.balanceNegativo = 0.0;
+                            _model.balanceNetoSTATE = 0.0;
+                          }
+                          safeSetState(() {});
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -520,6 +564,33 @@ class _PaginaSeguimientoGastosWidgetState
                   thickness: 1.0,
                   color: FlutterFlowTheme.of(context).primaryBackground,
                 ),
+                if (_model.sinResultadosParaMesAnio)
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(30.0, 40.0, 30.0, 40.0),
+                    child: Text(
+                      'No hay registros de gastos o ingresos para ${_model.mesBuscado} del ${_model.anioBuscado}!',
+                      textAlign: TextAlign.center,
+                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                            font: GoogleFonts.readexPro(
+                              fontWeight: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .fontWeight,
+                              fontStyle: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .fontStyle,
+                            ),
+                            fontSize: 18.0,
+                            letterSpacing: 0.0,
+                            fontWeight: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .fontWeight,
+                            fontStyle: FlutterFlowTheme.of(context)
+                                .bodyLarge
+                                .fontStyle,
+                          ),
+                    ),
+                  ),
+                if (!_model.sinResultadosParaMesAnio) ...[
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -528,7 +599,7 @@ class _PaginaSeguimientoGastosWidgetState
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                       child: Text(
-                        'Total: ${_model.balanceNetoSTATE < 0.0 ? '-\$' : '\$'}${(double balanceNeto) {
+                        'Total neto para ${_model.mesBuscado ?? _model.dropMesValue} del ${_model.anioBuscado ?? _model.dropAnioValue}: ${_model.balanceNetoSTATE < 0.0 ? '-\$' : '\$'}${(double balanceNeto) {
                           return balanceNeto.toString().replaceAll('-', '');
                         }(_model.balanceNetoSTATE)}',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -1426,6 +1497,7 @@ class _PaginaSeguimientoGastosWidgetState
                     color: FlutterFlowTheme.of(context).primaryBackground,
                   ),
                 ),
+                ],
               ],
             ),
           ),

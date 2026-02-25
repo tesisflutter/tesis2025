@@ -74,6 +74,13 @@ class PaginaSeguimientoGastosModel
   /// - Menor monto
   String ordenLista = 'Más reciente';
 
+  /// Indica si la búsqueda con el botón Play no arrojó resultados
+  bool sinResultadosParaMesAnio = false;
+
+  /// Mes y año buscados (se fijan al presionar Play, no al cambiar dropdowns)
+  String? mesBuscado;
+  String? anioBuscado;
+
   /// Fecha elegida para ver gastos, de ésta solo sacamos el mes y el año
   DateTime? fechaElegida;
 
@@ -103,13 +110,11 @@ class PaginaSeguimientoGastosModel
   // State field(s) for drop_mes widget.
   String? dropMesValue;
   FormFieldController<String>? dropMesValueController;
-  // Stores action output result for [Firestore Query - Query a collection] action in drop_mes widget.
-  List<TransaccionRecord>? transaccionesMesOutputCambioMes;
   // State field(s) for drop_anio widget.
   String? dropAnioValue;
   FormFieldController<String>? dropAnioValueController;
-  // Stores action output result for [Firestore Query - Query a collection] action in drop_anio widget.
-  List<TransaccionRecord>? transaccionesMesOutpuCambioAnio;
+  // Stores action output result for [Firestore Query - Query a collection] action in Play button.
+  List<TransaccionRecord>? transaccionesMesOutputPlayButton;
   // State field(s) for chk_categoria widget.
   Map<String, bool> chkCategoriaValueMap = {};
   List<String> get chkCategoriaCheckedItems => chkCategoriaValueMap.entries
