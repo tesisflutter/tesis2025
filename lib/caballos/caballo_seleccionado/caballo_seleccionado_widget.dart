@@ -346,19 +346,61 @@ class _CaballoSeleccionadoWidgetState extends State<CaballoSeleccionadoWidget>
                                 children: [
                                   if (!widget.navegaDesdePublicacion)
                                     FFButtonWidget(
-                                      onPressed: () {
-                                        print('btn_verFichaMedica pressed ...');
+                                      onPressed: () async {
+                                        final queryHistoriaClinicaCaballo =
+                                            await queryHistoriaClinicaRecordOnce(
+                                          queryBuilder:
+                                              (historiaClinicaRecord) =>
+                                                  historiaClinicaRecord
+                                                      .where(
+                                                        'ID_Caballo',
+                                                        isEqualTo: widget
+                                                            .caballoSeleccionado
+                                                            ?.iDEquino,
+                                                      )
+                                                      .where(
+                                                        'Correo_Duenio_Caballo',
+                                                        isEqualTo: FFAppState()
+                                                            .correoUsuarioLogueado,
+                                                      ),
+                                          singleRecord: true,
+                                        ).then((s) => s.firstOrNull);
+
+                                        context.pushNamed(
+                                          HistoriaClinicaWidget.routeName,
+                                          queryParameters: {
+                                            'caballoSeleccionado':
+                                                serializeParam(
+                                              widget.caballoSeleccionado,
+                                              ParamType.Document,
+                                            ),
+                                            'historiaClinicaCaballoPARAM':
+                                                serializeParam(
+                                              queryHistoriaClinicaCaballo,
+                                              ParamType.Document,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            'caballoSeleccionado':
+                                                widget.caballoSeleccionado,
+                                            'historiaClinicaCaballoPARAM':
+                                                queryHistoriaClinicaCaballo,
+                                          },
+                                        );
                                       },
-                                      text: 'Ver Ficha Medica',
+                                      text: 'Ver Historia Clínica',
+                                      icon: Icon(
+                                        Icons.medical_services,
+                                        size: 15.0,
+                                      ),
                                       options: FFButtonOptions(
                                         height: 40.0,
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 24.0, 0.0),
+                                            14.0, 0.0, 14.0, 0.0),
                                         iconPadding:
                                             EdgeInsetsDirectional.fromSTEB(
                                                 0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiary,
+                                        color: Color(0xFF394FEF),
                                         textStyle: FlutterFlowTheme.of(context)
                                             .titleSmall
                                             .override(
