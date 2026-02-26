@@ -79,7 +79,7 @@ class _ComponenteAgendarEventoWidgetState
     context.watch<FFAppState>();
 
     return Container(
-      width: 390.0,
+      width: double.infinity,
       height: 650.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -118,8 +118,9 @@ class _ComponenteAgendarEventoWidgetState
           Row(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 0.0, 0.0),
+              Flexible(
+                child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 10.0, 0.0),
                 child: Text(
                   '${dateTimeFormat(
                     "MMMMEEEEd",
@@ -146,6 +147,7 @@ class _ComponenteAgendarEventoWidgetState
                             FlutterFlowTheme.of(context).titleMedium.fontStyle,
                       ),
                 ),
+              ),
               ),
             ],
           ),

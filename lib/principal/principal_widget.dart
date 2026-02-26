@@ -200,11 +200,11 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 25.0, 0.0),
-                    child: Icon(
-                      Icons.notifications_sharp,
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      size: 24.0,
-                    ),
+                    // child: Icon(
+                    //   Icons.notifications_sharp,
+                    //   color: FlutterFlowTheme.of(context).primaryText,
+                    //   size: 24.0,
+                    // ),
                   ),
                 ],
                 centerTitle: false,

@@ -340,9 +340,10 @@ class _CaballoSeleccionadoWidgetState extends State<CaballoSeleccionadoWidget>
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                              Wrap(
+                                alignment: WrapAlignment.center,
+                                spacing: 8.0,
+                                runSpacing: 8.0,
                                 children: [
                                   if (!widget.navegaDesdePublicacion)
                                     FFButtonWidget(
@@ -434,17 +435,6 @@ class _CaballoSeleccionadoWidgetState extends State<CaballoSeleccionadoWidget>
                                             BorderRadius.circular(8.0),
                                       ),
                                     ),
-                                  Opacity(
-                                    opacity: 0.0,
-                                    child: SizedBox(
-                                      height: 5.0,
-                                      child: VerticalDivider(
-                                        thickness: 2.0,
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                      ),
-                                    ),
-                                  ),
                                   if (!widget.navegaDesdePublicacion)
                                     FFButtonWidget(
                                       onPressed: () async {

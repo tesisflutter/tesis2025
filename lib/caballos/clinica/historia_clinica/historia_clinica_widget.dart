@@ -628,7 +628,7 @@ class _HistoriaClinicaWidgetState extends State<HistoriaClinicaWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(15.0, 0.0, 15.0, 0.0),
                   child: Container(
                     width: double.infinity,
-                    height: _model.listaVisitasVeterinarias.length * 125,
+                    height: _model.listaVisitasVeterinarias.length * (MediaQuery.of(context).size.width < 400 ? 200.0 : 125.0),
                     decoration: BoxDecoration(),
                     child: Builder(
                       builder: (context) {
@@ -692,339 +692,225 @@ class _HistoriaClinicaWidgetState extends State<HistoriaClinicaWidget> {
                                               .first
                                           : null;
 
+                                  final _isCompact = MediaQuery.of(context).size.width < 400;
+                                  final _dateWidget = Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 3.0, 0.0, 0.0),
+                                    child: Text(
+                                      dateTimeFormat(
+                                        "dd/MM/yyyy",
+                                        intervencionItem.fechaVisita!,
+                                        locale: FFLocalizations.of(context).languageCode,
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            font: GoogleFonts.outfit(
+                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                            ),
+                                            fontSize: 22.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                            fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                          ),
+                                    ),
+                                  );
+                                  final _vetInfoWidget = Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 3.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Vet.: ${containerMedicoVeterinarioRecord?.nombre} ${containerMedicoVeterinarioRecord?.apellido}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            font: GoogleFonts.outfit(
+                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                            ),
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                            fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                          ),
+                                    ),
+                                  );
+                                  final _motivoWidget = Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 3.0, 0.0, 0.0),
+                                    child: Text(
+                                      intervencionItem.motivo,
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            font: GoogleFonts.outfit(
+                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                            ),
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                            fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                          ),
+                                    ),
+                                  );
+                                  final _montoWidget = Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(4.0, 3.0, 0.0, 0.0),
+                                    child: Text(
+                                      '\$${intervencionItem.monto.toString()}',
+                                      style: FlutterFlowTheme.of(context)
+                                          .headlineSmall
+                                          .override(
+                                            font: GoogleFonts.outfit(
+                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                            ),
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                            fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                          ),
+                                    ),
+                                  );
+                                  final _verDetalleBtn = Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        context.pushNamed(
+                                          VisitaVeterinariaWidget.routeName,
+                                          queryParameters: {
+                                            'caballoSeleccionado': serializeParam(
+                                              widget.caballoSeleccionado,
+                                              ParamType.Document,
+                                            ),
+                                            'veterinarioDeLaVisita': serializeParam(
+                                              containerMedicoVeterinarioRecord,
+                                              ParamType.Document,
+                                            ),
+                                            'visitaVeterinariaSeleccionada': serializeParam(
+                                              intervencionItem,
+                                              ParamType.Document,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            'caballoSeleccionado': widget.caballoSeleccionado,
+                                            'veterinarioDeLaVisita': containerMedicoVeterinarioRecord,
+                                            'visitaVeterinariaSeleccionada': intervencionItem,
+                                          },
+                                        );
+                                      },
+                                      text: 'Ver Detalle',
+                                      icon: Icon(
+                                        Icons.remove_red_eye,
+                                        size: 15.0,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 40.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                                        iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context).primary,
+                                        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                            fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                          ),
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FlutterFlowTheme.of(context).titleSmall.fontWeight,
+                                          fontStyle: FlutterFlowTheme.of(context).titleSmall.fontStyle,
+                                        ),
+                                        elevation: 0.0,
+                                        borderRadius: BorderRadius.circular(8.0),
+                                      ),
+                                    ),
+                                  );
+
                                   return Container(
                                     decoration: BoxDecoration(),
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                      child: _isCompact
+                                          ? Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          4.0, 3.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    dateTimeFormat(
-                                                      "dd/MM/yyyy",
-                                                      intervencionItem
-                                                          .fechaVisita!,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .outfit(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontStyle,
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Flexible(child: _dateWidget),
+                                                    SizedBox(width: 8.0),
+                                                    Flexible(child: _motivoWidget),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 4.0),
+                                                _vetInfoWidget,
+                                                SizedBox(height: 4.0),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Flexible(child: _montoWidget),
+                                                    _verDetalleBtn,
+                                                  ],
+                                                ),
+                                              ],
+                                            )
+                                          : Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      _dateWidget,
+                                                      Padding(
+                                                        padding: EdgeInsetsDirectional.fromSTEB(4.0, 3.0, 0.0, 0.0),
+                                                        child: Text(
+                                                          'Vet.:',
+                                                          style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                            font: GoogleFonts.outfit(
+                                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                            ),
+                                                            fontSize: 18.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                                            fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
                                                           ),
-                                                          fontSize: 22.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontStyle,
                                                         ),
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsetsDirectional.fromSTEB(4.0, 3.0, 0.0, 0.0),
+                                                        child: Text(
+                                                          '${containerMedicoVeterinarioRecord?.nombre} ${containerMedicoVeterinarioRecord?.apellido}',
+                                                          style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                                            font: GoogleFonts.outfit(
+                                                              fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                                              fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                            ),
+                                                            fontSize: 18.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight: FlutterFlowTheme.of(context).headlineSmall.fontWeight,
+                                                            fontStyle: FlutterFlowTheme.of(context).headlineSmall.fontStyle,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          4.0, 3.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'Vet.:',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .outfit(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          4.0, 3.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    '${containerMedicoVeterinarioRecord?.nombre} ${containerMedicoVeterinarioRecord?.apellido}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .outfit(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontStyle,
-                                                        ),
+                                                Expanded(
+                                                  child: Column(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                                    children: [
+                                                      _motivoWidget,
+                                                      _montoWidget,
+                                                      _verDetalleBtn,
+                                                    ],
                                                   ),
                                                 ),
                                               ],
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          4.0, 3.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    intervencionItem.motivo,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .outfit(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          4.0, 3.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    '\$${intervencionItem.monto.toString()}',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .headlineSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .outfit(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .headlineSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          fontSize: 18.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .headlineSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 5.0, 0.0, 0.0),
-                                                  child: FFButtonWidget(
-                                                    onPressed: () async {
-                                                      context.pushNamed(
-                                                        VisitaVeterinariaWidget
-                                                            .routeName,
-                                                        queryParameters: {
-                                                          'caballoSeleccionado':
-                                                              serializeParam(
-                                                            widget
-                                                                .caballoSeleccionado,
-                                                            ParamType.Document,
-                                                          ),
-                                                          'veterinarioDeLaVisita':
-                                                              serializeParam(
-                                                            containerMedicoVeterinarioRecord,
-                                                            ParamType.Document,
-                                                          ),
-                                                          'visitaVeterinariaSeleccionada':
-                                                              serializeParam(
-                                                            intervencionItem,
-                                                            ParamType.Document,
-                                                          ),
-                                                        }.withoutNulls,
-                                                        extra: <String,
-                                                            dynamic>{
-                                                          'caballoSeleccionado':
-                                                              widget
-                                                                  .caballoSeleccionado,
-                                                          'veterinarioDeLaVisita':
-                                                              containerMedicoVeterinarioRecord,
-                                                          'visitaVeterinariaSeleccionada':
-                                                              intervencionItem,
-                                                        },
-                                                      );
-                                                    },
-                                                    text: 'Ver Detalle',
-                                                    icon: Icon(
-                                                      Icons.remove_red_eye,
-                                                      size: 15.0,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  16.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: Colors
-                                                                    .white,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontStyle,
-                                                              ),
-                                                      elevation: 0.0,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                     ),
                                   );
                                 },

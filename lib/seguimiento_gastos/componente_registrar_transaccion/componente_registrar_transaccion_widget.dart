@@ -58,7 +58,7 @@ class _ComponenteRegistrarTransaccionWidgetState
     context.watch<FFAppState>();
 
     return Container(
-      width: 390.0,
+      width: double.infinity,
       height: 362.49,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,

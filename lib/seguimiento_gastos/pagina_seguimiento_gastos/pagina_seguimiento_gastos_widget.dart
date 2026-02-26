@@ -638,7 +638,8 @@ class _PaginaSeguimientoGastosWidgetState
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        InkWell(
+                        Expanded(
+                          child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
@@ -649,7 +650,6 @@ class _PaginaSeguimientoGastosWidgetState
                             safeSetState(() {});
                           },
                           child: Container(
-                            width: 200.0,
                             height: 130.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
@@ -746,7 +746,10 @@ class _PaginaSeguimientoGastosWidgetState
                             ),
                           ),
                         ),
-                        InkWell(
+                        ),
+                        SizedBox(width: 8.0),
+                        Expanded(
+                          child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
@@ -757,7 +760,6 @@ class _PaginaSeguimientoGastosWidgetState
                             safeSetState(() {});
                           },
                           child: Container(
-                            width: 200.0,
                             height: 130.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
@@ -857,6 +859,7 @@ class _PaginaSeguimientoGastosWidgetState
                               ],
                             ),
                           ),
+                        ),
                         ),
                       ],
                     ),
