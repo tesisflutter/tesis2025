@@ -265,6 +265,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                           Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             height: 213.0,
+                            clipBehavior: Clip.hardEdge,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
@@ -292,7 +293,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                           child: Image.network(
                                             'https://i0.wp.com/losequinos.com/wp-content/uploads/2024/05/caballos_criollos_gato_y_mancha.webp?w=880&ssl=1',
                                             width: 300.0,
-                                            height: 174.0,
+                                            height: 140.0,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -344,7 +345,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                           child: Image.network(
                                             'https://i0.wp.com/losequinos.com/wp-content/uploads/2024/05/cabalgata-cruce-de-los-andes-sanmartiniana-paso-de-los-patos-856.webp?fit=1024%2C472&ssl=1',
                                             width: 300.0,
-                                            height: 185.0,
+                                            height: 140.0,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -395,7 +396,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                           child: Image.network(
                                             'https://i0.wp.com/losequinos.com/wp-content/uploads/2024/05/Yellowstone_Serie_de_TV-884945491-large-1335337965-e1716820618586.webp?w=822&ssl=1',
                                             width: 300.0,
-                                            height: 185.0,
+                                            height: 140.0,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -446,7 +447,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                           child: Image.network(
                                             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaGzWYDSdTCggLE9zqWzbmj9mEX8oHsc2zTw&s',
                                             width: 300.0,
-                                            height: 170.0,
+                                            height: 140.0,
                                             fit: BoxFit.cover,
                                           ),
                                         ),
@@ -839,8 +840,8 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                     5.0, 0.0, 5.0, 0.0),
                                 child: Container(
                                   width: 450.0,
-                                  height: 120.0,
                                   constraints: BoxConstraints(
+                                    minHeight: 120.0,
                                     maxWidth: () {
                                       if (MediaQuery.sizeOf(context).width <
                                           kBreakpointSmall) {
@@ -870,111 +871,83 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
+                                        16.0, 12.0, 16.0, 12.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Balance de este mes',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .labelMedium
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.readexPro(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .labelMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .labelMedium
-                                                              .fontStyle,
-                                                    ),
+                                        Text(
+                                          'Balance de este mes',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(context)
+                                                          .labelMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(context)
+                                                          .labelMedium
+                                                          .fontStyle,
+                                                ),
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .fontStyle,
                                               ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 4.0,
-                                                                4.0, 0.0),
-                                                    child: Text(
-                                                      _model.balanceMensualSTATE! <
-                                                              0.0
-                                                          ? '-\$${(double balanceMensual) {
-                                                              return balanceMensual
-                                                                  .toString()
-                                                                  .replaceAll(
-                                                                      '.', ',')
-                                                                  .replaceAll(
-                                                                      '-', '');
-                                                            }(_model.balanceMensualSTATE!)}'
-                                                          : '\$${(double balanceMensual) {
-                                                              return balanceMensual
-                                                                  .toString()
-                                                                  .replaceAll(
-                                                                      '.', ',');
-                                                            }(_model.balanceMensualSTATE!)}',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .displaySmall
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .outfit(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .displaySmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .displaySmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmall
-                                                                    .fontStyle,
-                                                              ),
-                                                    ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 4.0, 0.0, 8.0),
+                                          child: Text(
+                                            _model.balanceMensualSTATE! < 0.0
+                                                ? '-\$${(double balanceMensual) {
+                                                    return balanceMensual
+                                                        .toString()
+                                                        .replaceAll('.', ',')
+                                                        .replaceAll('-', '');
+                                                  }(_model.balanceMensualSTATE!)}'
+                                                : '\$${(double balanceMensual) {
+                                                    return balanceMensual
+                                                        .toString()
+                                                        .replaceAll('.', ',');
+                                                  }(_model.balanceMensualSTATE!)}',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: FlutterFlowTheme.of(context)
+                                                .displaySmall
+                                                .override(
+                                                  font: GoogleFonts.outfit(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(context)
+                                                            .displaySmall
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(context)
+                                                            .displaySmall
+                                                            .fontStyle,
                                                   ),
-                                                ],
-                                              ),
-                                            ],
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(context)
+                                                          .displaySmall
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(context)
+                                                          .displaySmall
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
-                                        FFButtonWidget(
+                                        Align(
+                                          alignment: AlignmentDirectional(0.0, 0.0),
+                                          child: FFButtonWidget(
                                           onPressed: () async {
                                             context.pushNamed(
                                               PaginaSeguimientoGastosWidget
@@ -1051,6 +1024,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                         ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1069,8 +1043,8 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                     5.0, 0.0, 5.0, 0.0),
                                 child: Container(
                                   width: 450.0,
-                                  height: 120.0,
                                   constraints: BoxConstraints(
+                                    minHeight: 120.0,
                                     maxWidth: () {
                                       if (MediaQuery.sizeOf(context).width <
                                           kBreakpointSmall) {
@@ -1100,18 +1074,12 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
+                                        16.0, 12.0, 16.0, 12.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
                                               Text(
                                                 '¡Empezá a hacer un seguimiento',
                                                 style: FlutterFlowTheme.of(
@@ -1190,10 +1158,9 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                                       ),
                                                 ),
                                               ),
-                                            ].divide(SizedBox(height: 4.0)),
-                                          ),
-                                        ),
-                                        FFButtonWidget(
+                                        Align(
+                                          alignment: AlignmentDirectional(0.0, 0.0),
+                                          child: FFButtonWidget(
                                           onPressed: () async {
                                             await showModalBottomSheet(
                                               isScrollControlled: true,
@@ -1319,7 +1286,8 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                         ),
-                                      ].divide(SizedBox(width: 24.0)),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -1338,8 +1306,8 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                     5.0, 0.0, 5.0, 0.0),
                                 child: Container(
                                   width: 450.0,
-                                  height: 120.0,
                                   constraints: BoxConstraints(
+                                    minHeight: 120.0,
                                     maxWidth: () {
                                       if (MediaQuery.sizeOf(context).width <
                                           kBreakpointSmall) {
@@ -1369,18 +1337,12 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
+                                        16.0, 12.0, 16.0, 12.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Expanded(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
                                               Text(
                                                 'Balance de este mes',
                                                 style: FlutterFlowTheme.of(
@@ -1413,52 +1375,47 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                                               .fontStyle,
                                                     ),
                                               ),
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 4.0,
-                                                                4.0, 0.0),
-                                                    child: Text(
-                                                      'Nada todavía',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .displaySmall
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .outfit(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .displaySmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .displaySmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .displaySmall
-                                                                    .fontStyle,
-                                                              ),
-                                                    ),
-                                                  ),
-                                                ],
+                                              Padding(
+                                                padding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(0.0, 4.0,
+                                                            0.0, 8.0),
+                                                child: Text(
+                                                  'Nada todavía',
+                                                  overflow: TextOverflow.ellipsis,
+                                                  style:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .displaySmall
+                                                          .override(
+                                                            font:
+                                                                GoogleFonts
+                                                                    .outfit(
+                                                              fontWeight: FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .displaySmall
+                                                                  .fontWeight,
+                                                              fontStyle: FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .displaySmall
+                                                                  .fontStyle,
+                                                            ),
+                                                            letterSpacing:
+                                                                0.0,
+                                                            fontWeight: FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displaySmall
+                                                                .fontWeight,
+                                                            fontStyle: FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displaySmall
+                                                                .fontStyle,
+                                                          ),
+                                                ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                        FFButtonWidget(
+                                        Align(
+                                          alignment: AlignmentDirectional(0.0, 0.0),
+                                          child: FFButtonWidget(
                                           onPressed: () async {
                                             context.pushNamed(
                                               PaginaSeguimientoGastosWidget
@@ -1535,6 +1492,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                         ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -1545,13 +1503,14 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                         ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                              width: 385.0,
+                            Flexible(
+                              child: Container(
+                              constraints: BoxConstraints(maxWidth: 385.0),
                               height: 75.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
@@ -1592,6 +1551,7 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
                                   ),
                                 ),
                               ),
+                            ),
                             ),
                           ],
                         ),
