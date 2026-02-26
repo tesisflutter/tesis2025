@@ -158,8 +158,9 @@ class _MarketPublicacionSeleccionadaWidgetState
                 : null,
             body: SafeArea(
               top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
+              child: SingleChildScrollView(
+                child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Column(
                     mainAxisSize: MainAxisSize.max,
@@ -336,8 +337,7 @@ class _MarketPublicacionSeleccionadaWidgetState
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                       Container(
-                        width: 430.0,
-                        height: 581.0,
+                        width: double.infinity,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -1172,6 +1172,7 @@ class _MarketPublicacionSeleccionadaWidgetState
                     ],
                   ),
                 ].addToEnd(SizedBox(height: 50.0)),
+              ),
               ),
             ),
           ),

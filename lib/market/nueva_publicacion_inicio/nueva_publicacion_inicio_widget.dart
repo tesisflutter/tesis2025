@@ -99,8 +99,9 @@ class _NuevaPublicacionInicioWidgetState
             : null,
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: SingleChildScrollView(
+            child: Column(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Opacity(
@@ -336,6 +337,7 @@ class _NuevaPublicacionInicioWidgetState
                 ),
               ),
             ],
+          ),
           ),
         ),
       ),

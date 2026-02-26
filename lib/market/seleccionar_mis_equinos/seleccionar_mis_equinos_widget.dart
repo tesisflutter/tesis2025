@@ -285,7 +285,6 @@ class _SeleccionarMisEquinosWidgetState
                                                 ),
                                                 Flexible(
                                                   child: Container(
-                                                    width: 200.0,
                                                     height: 40.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
@@ -365,14 +364,13 @@ class _SeleccionarMisEquinosWidgetState
                                                         size: 15.0,
                                                       ),
                                                       options: FFButtonOptions(
-                                                        width: 88.0,
                                                         height: 30.0,
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    16.0,
+                                                                    8.0,
                                                                     0.0,
-                                                                    16.0,
+                                                                    8.0,
                                                                     0.0),
                                                         iconPadding:
                                                             EdgeInsetsDirectional
@@ -420,10 +418,7 @@ class _SeleccionarMisEquinosWidgetState
                                                     ),
                                                   ),
                                                 ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0.0, 0.0),
+                                                Flexible(
                                                   child: FFButtonWidget(
                                                     onPressed: () async {
                                                       _model.listaFotos =
@@ -541,9 +536,7 @@ class _SeleccionarMisEquinosWidgetState
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
+                                      Flexible(
                                         child: Text(
                                           'Seleccionar las fotos del caballo a publicar:',
                                           textAlign: TextAlign.center,

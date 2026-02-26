@@ -2321,7 +2321,8 @@ class _NuevaVisitaVeterinariaWidgetState
                                   .primaryBackground,
                             ),
                           ),
-                          Padding(
+                          Flexible(
+                            child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 5.0, 0.0, 12.0, 8.0),
                             child: Text(
@@ -2346,6 +2347,7 @@ class _NuevaVisitaVeterinariaWidgetState
                                         .fontStyle,
                                   ),
                             ),
+                          ),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
