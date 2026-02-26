@@ -94,7 +94,7 @@ class _ComponenteCalendarioWidgetState
     context.watch<FFAppState>();
 
     return Container(
-      width: 466.0,
+      width: double.infinity,
       height: 485.0,
       child: Stack(
         children: [
@@ -118,26 +118,41 @@ class _ComponenteCalendarioWidgetState
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Column(
+                            Flexible(
+                              child: Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Row(
-                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      valueOrDefault<String>(
-                                        dateTimeFormat(
-                                          "MMMM",
-                                          _model.fechaDeMesSeleccionado,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
+                                    Flexible(
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          dateTimeFormat(
+                                            "MMMM",
+                                            _model.fechaDeMesSeleccionado,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          ),
+                                          '0',
                                         ),
-                                        '0',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            font: GoogleFonts.readexPro(
+                                        overflow: TextOverflow.ellipsis,
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .fontStyle,
+                                              ),
+                                              color: FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                              letterSpacing: 0.0,
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
@@ -147,18 +162,7 @@ class _ComponenteCalendarioWidgetState
                                                       .labelLarge
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .labelLarge
-                                                    .fontStyle,
-                                          ),
+                                      ),
                                     ),
                                     Text(
                                       valueOrDefault<String>(
@@ -193,11 +197,12 @@ class _ComponenteCalendarioWidgetState
                                 ),
                               ],
                             ),
+                            ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Row(
-                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Transform.rotate(
                                       angle: 180.0 * (math.pi / 180),
@@ -354,7 +359,7 @@ class _ComponenteCalendarioWidgetState
                   decoration: BoxDecoration(),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                     child: Builder(
                       builder: (context) {
                         final calendarioVar = functions
@@ -372,8 +377,8 @@ class _ComponenteCalendarioWidgetState
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 7,
-                            crossAxisSpacing: 18.0,
-                            mainAxisSpacing: 12.0,
+                            crossAxisSpacing: 8.0,
+                            mainAxisSpacing: 8.0,
                             childAspectRatio: 1.0,
                           ),
                           shrinkWrap: true,
@@ -396,8 +401,6 @@ class _ComponenteCalendarioWidgetState
                                 );
                               },
                               child: Container(
-                                width: 24.0,
-                                height: 24.0,
                                 decoration: BoxDecoration(
                                   color: dateTimeFormat(
                                             "d/M/y",

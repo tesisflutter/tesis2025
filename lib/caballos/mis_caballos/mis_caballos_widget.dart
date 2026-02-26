@@ -125,7 +125,6 @@ class _MisCaballosWidgetState extends State<MisCaballosWidget> {
         ),
         appBar: responsiveVisibility(
           context: context,
-          tablet: false,
           tabletLandscape: false,
           desktop: false,
         )
@@ -560,7 +559,9 @@ class _MisCaballosWidgetState extends State<MisCaballosWidget> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Column(
+                                        Flexible(
+                                          flex: 0,
+                                          child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -594,7 +595,9 @@ class _MisCaballosWidgetState extends State<MisCaballosWidget> {
                                             ),
                                           ],
                                         ),
-                                        Column(
+                                        ),
+                                        Flexible(
+                                          child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -607,8 +610,9 @@ class _MisCaballosWidgetState extends State<MisCaballosWidget> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Container(
-                                                    width: 200.0,
+                                                  Flexible(
+                                                    child: Container(
+                                                    constraints: BoxConstraints(maxWidth: 200.0),
                                                     height: 40.0,
                                                     decoration: BoxDecoration(
                                                       color: FlutterFlowTheme
@@ -639,6 +643,7 @@ class _MisCaballosWidgetState extends State<MisCaballosWidget> {
                                                               .nombre,
                                                     ),
                                                   ),
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -646,12 +651,9 @@ class _MisCaballosWidgetState extends State<MisCaballosWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 3.0, 0.0, 3.0),
                                               child: Row(
-                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: [
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            -1.0, 0.0),
+                                                  Flexible(
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
                                                         context.pushNamed(
@@ -753,12 +755,9 @@ class _MisCaballosWidgetState extends State<MisCaballosWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 3.0, 0.0, 3.0),
                                               child: Row(
-                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisSize: MainAxisSize.min,
                                                 children: [
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 0.0),
+                                                  Flexible(
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
                                                         _model.queryHistoriaClinicaCaballo =
@@ -876,6 +875,7 @@ class _MisCaballosWidgetState extends State<MisCaballosWidget> {
                                               ),
                                             ),
                                           ],
+                                        ),
                                         ),
                                       ],
                                     ),

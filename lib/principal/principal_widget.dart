@@ -166,7 +166,6 @@ class _PrincipalWidgetState extends State<PrincipalWidget> {
           headerSliverBuilder: (context, _) => [
             if (responsiveVisibility(
               context: context,
-              tablet: false,
               tabletLandscape: false,
               desktop: false,
             ))

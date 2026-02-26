@@ -92,8 +92,9 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                   ),
                 ),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.max,
+              SingleChildScrollView(
+                child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Opacity(
                     opacity: 0.0,
@@ -930,6 +931,7 @@ class _IniciarSesionWidgetState extends State<IniciarSesionWidget> {
                     ),
                   ),
                 ],
+              ),
               ),
             ],
           ),

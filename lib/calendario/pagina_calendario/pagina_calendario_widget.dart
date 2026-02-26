@@ -132,7 +132,6 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             appBar: responsiveVisibility(
               context: context,
-              tablet: false,
               tabletLandscape: false,
               desktop: false,
             )
@@ -252,7 +251,6 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                     children: [
                                       Container(
                                         width: double.infinity,
-                                        height: 500.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryBackground,
@@ -546,7 +544,8 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                   MainAxisAlignment
                                                                       .spaceBetween,
                                                               children: [
-                                                                Column(
+                                                                Expanded(
+                                                                  child: Column(
                                                                   mainAxisSize:
                                                                       MainAxisSize
                                                                           .max,
@@ -567,6 +566,7 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                           Text(
                                                                         eventosProximosItem
                                                                             .nombre,
+                                                                        overflow: TextOverflow.ellipsis,
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .headlineSmall
                                                                             .override(
@@ -589,7 +589,7 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                       child:
                                                                           Row(
                                                                         mainAxisSize:
-                                                                            MainAxisSize.max,
+                                                                            MainAxisSize.min,
                                                                         children: [
                                                                           Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -627,12 +627,14 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                               ),
                                                                             ),
                                                                           ),
-                                                                          Text(
+                                                                          Flexible(
+                                                                            child: Text(
                                                                             dateTimeFormat(
                                                                               "MMMMEEEEd",
                                                                               eventosProximosItem.fechaHora!,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ),
+                                                                            overflow: TextOverflow.ellipsis,
                                                                             style: FlutterFlowTheme.of(context).bodySmall.override(
                                                                                   font: GoogleFonts.readexPro(
                                                                                     fontWeight: FlutterFlowTheme.of(context).bodySmall.fontWeight,
@@ -643,10 +645,12 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                                   fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                                 ),
                                                                           ),
+                                                                          ),
                                                                         ],
                                                                       ),
                                                                     ),
                                                                   ],
+                                                                ),
                                                                 ),
                                                                 Container(
                                                                   width: 150.0,
@@ -888,7 +892,8 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                 MainAxisAlignment
                                                                     .spaceBetween,
                                                             children: [
-                                                              Column(
+                                                              Expanded(
+                                                                child: Column(
                                                                 mainAxisSize:
                                                                     MainAxisSize
                                                                         .max,
@@ -909,6 +914,7 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                     child: Text(
                                                                       ultimosEventosItem
                                                                           .nombre,
+                                                                      overflow: TextOverflow.ellipsis,
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .headlineSmall
@@ -930,7 +936,7 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                   Row(
                                                                     mainAxisSize:
                                                                         MainAxisSize
-                                                                            .max,
+                                                                            .min,
                                                                     children: [
                                                                       Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -979,7 +985,8 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                           ),
                                                                         ),
                                                                       ),
-                                                                      Padding(
+                                                                      Flexible(
+                                                                        child: Padding(
                                                                         padding: EdgeInsetsDirectional.fromSTEB(
                                                                             4.0,
                                                                             0.0,
@@ -998,6 +1005,7 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
                                                                           )}',
+                                                                          overflow: TextOverflow.ellipsis,
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodySmall
                                                                               .override(
@@ -1011,9 +1019,11 @@ class _PaginaCalendarioWidgetState extends State<PaginaCalendarioWidget>
                                                                               ),
                                                                         ),
                                                                       ),
+                                                                      ),
                                                                     ],
                                                                   ),
                                                                 ],
+                                                              ),
                                                               ),
                                                               Container(
                                                                 width: 150.0,

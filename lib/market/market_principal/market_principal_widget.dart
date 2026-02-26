@@ -146,7 +146,6 @@ class _MarketPrincipalWidgetState extends State<MarketPrincipalWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: responsiveVisibility(
           context: context,
-          tablet: false,
           tabletLandscape: false,
           desktop: false,
         )
@@ -1189,7 +1188,7 @@ class _MarketPrincipalWidgetState extends State<MarketPrincipalWidget> {
                                   snapshot.data!;
 
                               return Container(
-                                width: 430.0,
+                                width: double.infinity,
                                 height: 200.0,
                                 decoration: BoxDecoration(),
                                 child: Builder(
@@ -1290,7 +1289,7 @@ class _MarketPrincipalWidgetState extends State<MarketPrincipalWidget> {
                                                           listaMisPublicacionesItem
                                                               .listaURLFotos
                                                               .firstOrNull!,
-                                                          width: 300.0,
+                                                          width: double.infinity,
                                                           height: 100.0,
                                                           fit: BoxFit.cover,
                                                         ),
@@ -1867,7 +1866,7 @@ class _MarketPrincipalWidgetState extends State<MarketPrincipalWidget> {
                                 _model.ordenLista = _model.dropDownValue!;
                                 safeSetState(() {});
                               },
-                              width: 200.0,
+                              width: 170.0,
                               height: 40.0,
                               textStyle: FlutterFlowTheme.of(context)
                                   .bodyMedium

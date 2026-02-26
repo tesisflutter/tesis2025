@@ -93,7 +93,6 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: responsiveVisibility(
           context: context,
-          tablet: false,
           tabletLandscape: false,
           desktop: false,
         )
@@ -818,14 +817,16 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
                                   .primaryBackground,
                             ),
                           ),
-                          Column(
+                          Expanded(
+                            child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Container(
-                                  width: 385.0,
+                                  width: double.infinity,
+                                  constraints: BoxConstraints(maxWidth: 385.0),
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context)
@@ -939,6 +940,7 @@ class _MiCuentaWidgetState extends State<MiCuentaWidget> {
                                 ),
                               ),
                             ],
+                          ),
                           ),
                         ],
                       ),
