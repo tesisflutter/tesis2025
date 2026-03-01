@@ -70,6 +70,11 @@ class UsuarioRecord extends FirestoreRecord {
   DateTime? get fechaCreacionPerfil => _fechaCreacionPerfil;
   bool hasFechaCreacionPerfil() => _fechaCreacionPerfil != null;
 
+  // "Ubicacion_GeoPoint" field.
+  LatLng? _ubicacionGeoPoint;
+  LatLng? get ubicacionGeoPoint => _ubicacionGeoPoint;
+  bool hasUbicacionGeoPoint() => _ubicacionGeoPoint != null;
+
   // "ID_Veterinario_Cabecera" field.
   int? _iDVeterinarioCabecera;
   int get iDVeterinarioCabecera => _iDVeterinarioCabecera ?? 0;
@@ -86,6 +91,7 @@ class UsuarioRecord extends FirestoreRecord {
     _provincia = snapshotData['Provincia'] as String?;
     _telefono = castToType<int>(snapshotData['Telefono']);
     _uRLFotoPerfil = snapshotData['URL_Foto_Perfil'] as String?;
+    _ubicacionGeoPoint = snapshotData['Ubicacion_GeoPoint'] as LatLng?;
     _fechaCreacionPerfil = snapshotData['Fecha_Creacion_Perfil'] as DateTime?;
     _iDVeterinarioCabecera =
         castToType<int>(snapshotData['ID_Veterinario_Cabecera']);
@@ -136,6 +142,7 @@ Map<String, dynamic> createUsuarioRecordData({
   String? provincia,
   int? telefono,
   String? uRLFotoPerfil,
+  LatLng? ubicacionGeoPoint,
   DateTime? fechaCreacionPerfil,
   int? iDVeterinarioCabecera,
 }) {
@@ -151,6 +158,7 @@ Map<String, dynamic> createUsuarioRecordData({
       'Provincia': provincia,
       'Telefono': telefono,
       'URL_Foto_Perfil': uRLFotoPerfil,
+      'Ubicacion_GeoPoint': ubicacionGeoPoint,
       'Fecha_Creacion_Perfil': fechaCreacionPerfil,
       'ID_Veterinario_Cabecera': iDVeterinarioCabecera,
     }.withoutNulls,
@@ -174,6 +182,7 @@ class UsuarioRecordDocumentEquality implements Equality<UsuarioRecord> {
         e1?.provincia == e2?.provincia &&
         e1?.telefono == e2?.telefono &&
         e1?.uRLFotoPerfil == e2?.uRLFotoPerfil &&
+        e1?.ubicacionGeoPoint == e2?.ubicacionGeoPoint &&
         e1?.fechaCreacionPerfil == e2?.fechaCreacionPerfil &&
         e1?.iDVeterinarioCabecera == e2?.iDVeterinarioCabecera;
   }
@@ -190,6 +199,7 @@ class UsuarioRecordDocumentEquality implements Equality<UsuarioRecord> {
         e?.provincia,
         e?.telefono,
         e?.uRLFotoPerfil,
+        e?.ubicacionGeoPoint,
         e?.fechaCreacionPerfil,
         e?.iDVeterinarioCabecera
       ]);

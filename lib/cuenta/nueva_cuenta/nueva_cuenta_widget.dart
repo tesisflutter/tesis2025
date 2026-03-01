@@ -7,6 +7,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/caballos/selector_mapa/selector_mapa_widget.dart';
+import '/custom_code/geocoding_service.dart';
+import '/flutter_flow/place.dart';
 import '/index.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -972,6 +975,134 @@ class _NuevaCuentaWidgetState extends State<NuevaCuentaWidget> {
                         ),
                       ],
                     ),
+                    // Boton para seleccionar ubicacion en mapa
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          58.0, 0.0, 10.0, 8.0),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          final result =
+                              await Navigator.push<FFPlace>(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SelectorMapaWidget(
+                                ubicacionInicial:
+                                    _model.ubicacionGeoPoint,
+                              ),
+                            ),
+                          );
+                          if (result != null) {
+                            safeSetState(() {
+                              _model.ubicacionSeleccionadaMapa =
+                                  result;
+                              _model.ubicacionGeoPoint =
+                                  result.latLng;
+                              if (result.city.isNotEmpty) {
+                                _model.txtFieldCiudadTextController
+                                    ?.text = result.city;
+                              }
+                              if (result.state.isNotEmpty) {
+                                final provinciaNormalizada =
+                                    GeocodingService
+                                        .normalizarProvincia(
+                                            result.state);
+                                if (provinciaNormalizada !=
+                                    null) {
+                                  _model.dropDownProvinciaValue =
+                                      provinciaNormalizada;
+                                  _model.dropDownProvinciaValueController
+                                          ?.value =
+                                      provinciaNormalizada;
+                                }
+                              }
+                            });
+                          }
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius:
+                                BorderRadius.circular(20.0),
+                            border: Border.all(
+                              color:
+                                  FlutterFlowTheme.of(context)
+                                      .primary,
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.map_outlined,
+                                color:
+                                    FlutterFlowTheme.of(context)
+                                        .primary,
+                                size: 24.0,
+                              ),
+                              SizedBox(width: 8.0),
+                              Text(
+                                _model.ubicacionSeleccionadaMapa !=
+                                        null
+                                    ? 'Ubicación seleccionada en mapa'
+                                    : 'Seleccionar ubicación en mapa',
+                                style:
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts
+                                              .readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                          ),
+                                          color: FlutterFlowTheme
+                                                  .of(context)
+                                              .primary,
+                                          letterSpacing: 0.0,
+                                        ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (_model.ubicacionSeleccionadaMapa !=
+                            null &&
+                        _model.ubicacionSeleccionadaMapa!
+                            .address.isNotEmpty)
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            58.0, 0.0, 10.0, 8.0),
+                        child: Text(
+                          _model.ubicacionSeleccionadaMapa!
+                              .address,
+                          style: FlutterFlowTheme.of(context)
+                              .bodySmall
+                              .override(
+                                font: GoogleFonts.readexPro(
+                                  fontWeight:
+                                      FlutterFlowTheme.of(
+                                              context)
+                                          .bodySmall
+                                          .fontWeight,
+                                ),
+                                letterSpacing: 0.0,
+                              ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -1758,6 +1889,7 @@ class _NuevaCuentaWidgetState extends State<NuevaCuentaWidget> {
                               telefono: int.tryParse(
                                   _model.txtFieldTelefonoTextController.text),
                               uRLFotoPerfil: _model.fotoSubidaPath,
+                              ubicacionGeoPoint: _model.ubicacionGeoPoint,
                             ));
                         await authManager.sendEmailVerification();
                         await showDialog(

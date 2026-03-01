@@ -1,6 +1,8 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/index.dart';
 import 'mi_cuenta_widget.dart' show MiCuentaWidget;
 import 'package:flutter/material.dart';
@@ -15,6 +17,10 @@ class MiCuentaModel extends FlutterFlowModel<MiCuentaWidget> {
   bool algunDatoCambiado = false;
 
   String? fotoPerfilPath;
+
+  // State field(s) para el selector de mapa.
+  FFPlace? ubicacionSeleccionadaMapa;
+  LatLng? ubicacionGeoPoint;
 
   ///  State fields for stateful widgets in this page.
 

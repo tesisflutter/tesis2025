@@ -1,6 +1,8 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/index.dart';
 import 'nueva_cuenta_widget.dart' show NuevaCuentaWidget;
 import 'package:flutter/material.dart';
@@ -101,6 +103,10 @@ class NuevaCuentaModel extends FlutterFlowModel<NuevaCuentaWidget> {
     }
     return null;
   }
+
+  // State field(s) para el selector de mapa.
+  FFPlace? ubicacionSeleccionadaMapa;
+  LatLng? ubicacionGeoPoint;
 
   // State field(s) for txtField_Telefono widget.
   FocusNode? txtFieldTelefonoFocusNode;
