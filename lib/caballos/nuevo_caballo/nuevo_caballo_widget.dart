@@ -11,6 +11,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/market/componente_dialogo_imagen/componente_dialogo_imagen_widget.dart';
 import '/caballos/selector_mapa/selector_mapa_widget.dart';
+import '/custom_code/geocoding_service.dart';
 import '/flutter_flow/place.dart';
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -2279,10 +2280,18 @@ class _NuevoCaballoWidgetState extends State<NuevoCaballoWidget> {
                                                     ?.text = result.city;
                                               }
                                               if (result.state.isNotEmpty) {
-                                                _model.dropDownProvinciaValue =
-                                                    result.state;
-                                                _model.dropDownProvinciaValueController
-                                                    ?.value = result.state;
+                                                final provinciaNormalizada =
+                                                    GeocodingService
+                                                        .normalizarProvincia(
+                                                            result.state);
+                                                if (provinciaNormalizada !=
+                                                    null) {
+                                                  _model.dropDownProvinciaValue =
+                                                      provinciaNormalizada;
+                                                  _model.dropDownProvinciaValueController
+                                                          ?.value =
+                                                      provinciaNormalizada;
+                                                }
                                               }
                                             });
                                           }
