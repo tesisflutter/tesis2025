@@ -32,7 +32,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.mycompany.tesisfront1test"
-    compileSdkVersion 35
+    compileSdkVersion 36
     
 
     compileOptions {

@@ -7,6 +7,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/market/componente_dialogo_imagen/componente_dialogo_imagen_widget.dart';
+import '/caballos/selector_mapa/selector_mapa_widget.dart';
+import '/flutter_flow/place.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -104,6 +106,7 @@ class _CaballoSeleccionadoWidgetState extends State<CaballoSeleccionadoWidget>
     _model.ubicacionTextController ??=
         TextEditingController(text: widget.caballoSeleccionado?.ubicacion);
     _model.ubicacionFocusNode ??= FocusNode();
+    _model.ubicacionGeoPoint = widget.caballoSeleccionado?.ubicacionGeoPoint;
 
     _model.descripcionTextController ??=
         TextEditingController(text: widget.caballoSeleccionado?.descripcion);
@@ -2111,6 +2114,126 @@ class _CaballoSeleccionadoWidgetState extends State<CaballoSeleccionadoWidget>
                                         ),
                                       ],
                                     ),
+                                    // Boton para seleccionar ubicacion en mapa
+                                    if (!widget.navegaDesdePublicacion)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            58.0, 0.0, 10.0, 8.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            final result =
+                                                await Navigator.push<FFPlace>(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SelectorMapaWidget(
+                                                  ubicacionInicial:
+                                                      _model.ubicacionGeoPoint,
+                                                ),
+                                              ),
+                                            );
+                                            if (result != null) {
+                                              safeSetState(() {
+                                                _model.ubicacionSeleccionadaMapa =
+                                                    result;
+                                                _model.ubicacionGeoPoint =
+                                                    result.latLng;
+                                                _model.ubicacionTextController
+                                                        ?.text =
+                                                    result.city.isNotEmpty &&
+                                                            result.state
+                                                                .isNotEmpty
+                                                        ? '${result.city}, ${result.state}'
+                                                        : result.address;
+                                              });
+                                            }
+                                          },
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 50.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(20.0),
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.map_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 24.0,
+                                                ),
+                                                SizedBox(width: 8.0),
+                                                Text(
+                                                  _model.ubicacionSeleccionadaMapa !=
+                                                          null
+                                                      ? 'Ubicación seleccionada en mapa'
+                                                      : 'Seleccionar ubicación en mapa',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                        ),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        letterSpacing: 0.0,
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    if (_model.ubicacionSeleccionadaMapa !=
+                                            null &&
+                                        _model.ubicacionSeleccionadaMapa!
+                                            .address.isNotEmpty)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            58.0, 0.0, 10.0, 8.0),
+                                        child: Text(
+                                          _model.ubicacionSeleccionadaMapa!
+                                              .address,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodySmall
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodySmall
+                                                          .fontWeight,
+                                                ),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -2365,6 +2488,8 @@ class _CaballoSeleccionadoWidgetState extends State<CaballoSeleccionadoWidget>
                                                 ubicacion: _model
                                                     .ubicacionTextController
                                                     .text,
+                                                ubicacionGeoPoint:
+                                                    _model.ubicacionGeoPoint,
                                                 descripcion: _model
                                                     .descripcionTextController
                                                     .text,

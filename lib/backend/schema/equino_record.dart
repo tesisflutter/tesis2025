@@ -60,6 +60,11 @@ class EquinoRecord extends FirestoreRecord {
   String get ubicacion => _ubicacion ?? '';
   bool hasUbicacion() => _ubicacion != null;
 
+  // "Ubicacion_GeoPoint" field.
+  LatLng? _ubicacionGeoPoint;
+  LatLng? get ubicacionGeoPoint => _ubicacionGeoPoint;
+  bool hasUbicacionGeoPoint() => _ubicacionGeoPoint != null;
+
   // "Lista_URL_Fotos" field.
   List<String>? _listaURLFotos;
   List<String> get listaURLFotos => _listaURLFotos ?? const [];
@@ -85,6 +90,7 @@ class EquinoRecord extends FirestoreRecord {
     _altura = castToType<int>(snapshotData['Altura']);
     _color = snapshotData['Color'] as String?;
     _ubicacion = snapshotData['Ubicacion'] as String?;
+    _ubicacionGeoPoint = snapshotData['Ubicacion_GeoPoint'] as LatLng?;
     _listaURLFotos = getDataList(snapshotData['Lista_URL_Fotos']);
     _fechaRegistro = snapshotData['Fecha_Registro'] as DateTime?;
     _fechaNacimiento = snapshotData['Fecha_Nacimiento'] as DateTime?;
@@ -133,6 +139,7 @@ Map<String, dynamic> createEquinoRecordData({
   int? altura,
   String? color,
   String? ubicacion,
+  LatLng? ubicacionGeoPoint,
   DateTime? fechaRegistro,
   DateTime? fechaNacimiento,
 }) {
@@ -147,6 +154,7 @@ Map<String, dynamic> createEquinoRecordData({
       'Altura': altura,
       'Color': color,
       'Ubicacion': ubicacion,
+      'Ubicacion_GeoPoint': ubicacionGeoPoint,
       'Fecha_Registro': fechaRegistro,
       'Fecha_Nacimiento': fechaNacimiento,
     }.withoutNulls,
@@ -170,6 +178,7 @@ class EquinoRecordDocumentEquality implements Equality<EquinoRecord> {
         e1?.altura == e2?.altura &&
         e1?.color == e2?.color &&
         e1?.ubicacion == e2?.ubicacion &&
+        e1?.ubicacionGeoPoint == e2?.ubicacionGeoPoint &&
         listEquality.equals(e1?.listaURLFotos, e2?.listaURLFotos) &&
         e1?.fechaRegistro == e2?.fechaRegistro &&
         e1?.fechaNacimiento == e2?.fechaNacimiento;
@@ -186,6 +195,7 @@ class EquinoRecordDocumentEquality implements Equality<EquinoRecord> {
         e?.altura,
         e?.color,
         e?.ubicacion,
+        e?.ubicacionGeoPoint,
         e?.listaURLFotos,
         e?.fechaRegistro,
         e?.fechaNacimiento

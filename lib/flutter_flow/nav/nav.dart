@@ -248,6 +248,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   page: NuevoCaballoWidget(),
                 )),
         FFRoute(
+          name: SelectorMapaWidget.routeName,
+          path: SelectorMapaWidget.routePath,
+          builder: (context, params) => SelectorMapaWidget(),
+        ),
+        FFRoute(
             name: NuevaPublicacionInicioWidget.routeName,
             path: NuevaPublicacionInicioWidget.routePath,
             requireAuth: true,

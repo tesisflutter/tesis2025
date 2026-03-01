@@ -1,5 +1,7 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/index.dart';
 import 'caballo_seleccionado_widget.dart' show CaballoSeleccionadoWidget;
 import 'package:carousel_slider/carousel_slider.dart';
@@ -87,6 +89,10 @@ class CaballoSeleccionadoModel
   FocusNode? ubicacionFocusNode;
   TextEditingController? ubicacionTextController;
   String? Function(BuildContext, String?)? ubicacionTextControllerValidator;
+  // State field(s) para el selector de mapa.
+  FFPlace? ubicacionSeleccionadaMapa;
+  LatLng? ubicacionGeoPoint;
+
   // State field(s) for Descripcion widget.
   FocusNode? descripcionFocusNode;
   TextEditingController? descripcionTextController;

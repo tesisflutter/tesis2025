@@ -75,3 +75,5 @@ export '/caballos/ficha_veterinario/ficha_veterinario_widget.dart'
     show FichaVeterinarioWidget;
 export '/caballos/clinica/visita_veterinaria/visita_veterinaria_widget.dart'
     show VisitaVeterinariaWidget;
+export '/caballos/selector_mapa/selector_mapa_widget.dart'
+    show SelectorMapaWidget;

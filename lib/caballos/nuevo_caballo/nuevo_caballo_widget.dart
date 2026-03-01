@@ -10,6 +10,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/market/componente_dialogo_imagen/componente_dialogo_imagen_widget.dart';
+import '/caballos/selector_mapa/selector_mapa_widget.dart';
+import '/flutter_flow/place.dart';
 import '/index.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
@@ -2245,6 +2247,126 @@ class _NuevoCaballoWidgetState extends State<NuevoCaballoWidget> {
                                         ),
                                       ],
                                     ),
+                                    // Boton para seleccionar ubicacion en mapa
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          58.0, 0.0, 10.0, 8.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          final result =
+                                              await Navigator.push<FFPlace>(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SelectorMapaWidget(
+                                                ubicacionInicial:
+                                                    _model.ubicacionGeoPoint,
+                                              ),
+                                            ),
+                                          );
+                                          if (result != null) {
+                                            safeSetState(() {
+                                              _model.ubicacionSeleccionadaMapa =
+                                                  result;
+                                              _model.ubicacionGeoPoint =
+                                                  result.latLng;
+                                              if (result.city.isNotEmpty) {
+                                                _model.ciudadTextController
+                                                    ?.text = result.city;
+                                              }
+                                              if (result.state.isNotEmpty) {
+                                                _model.dropDownProvinciaValue =
+                                                    result.state;
+                                                _model.dropDownProvinciaValueController
+                                                    ?.value = result.state;
+                                              }
+                                            });
+                                          }
+                                        },
+                                        child: Container(
+                                          width: double.infinity,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                            border: Border.all(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              width: 1.0,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.map_outlined,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 24.0,
+                                              ),
+                                              SizedBox(width: 8.0),
+                                              Text(
+                                                _model.ubicacionSeleccionadaMapa !=
+                                                        null
+                                                    ? 'Ubicación seleccionada en mapa'
+                                                    : 'Seleccionar ubicación en mapa',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .readexPro(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    if (_model.ubicacionSeleccionadaMapa !=
+                                            null &&
+                                        _model.ubicacionSeleccionadaMapa!
+                                            .address.isNotEmpty)
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            58.0, 0.0, 10.0, 8.0),
+                                        child: Text(
+                                          _model.ubicacionSeleccionadaMapa!
+                                              .address,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodySmall
+                                              .override(
+                                                font: GoogleFonts.readexPro(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodySmall
+                                                          .fontWeight,
+                                                ),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
                                     Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -2549,7 +2671,9 @@ class _NuevoCaballoWidgetState extends State<NuevoCaballoWidget> {
                                               return;
                                             }
                                             if (_model.dropDownProvinciaValue ==
-                                                null) {
+                                                    null &&
+                                                _model.ubicacionGeoPoint ==
+                                                    null) {
                                               return;
                                             }
                                             _model.cuentaDocsCaballo =
@@ -2567,7 +2691,14 @@ class _NuevoCaballoWidgetState extends State<NuevoCaballoWidget> {
                                                     .razaTextController.text,
                                                 sexo: _model.chipsSexoValue,
                                                 ubicacion: _model
-                                                    .ciudadTextController.text,
+                                                            .dropDownProvinciaValue !=
+                                                        null
+                                                    ? '${_model.ciudadTextController.text}, ${_model.dropDownProvinciaValue}'
+                                                    : _model
+                                                        .ciudadTextController
+                                                        .text,
+                                                ubicacionGeoPoint:
+                                                    _model.ubicacionGeoPoint,
                                                 descripcion: _model
                                                     .descripcionTextController
                                                     .text,
@@ -2603,7 +2734,14 @@ class _NuevoCaballoWidgetState extends State<NuevoCaballoWidget> {
                                                     .razaTextController.text,
                                                 sexo: _model.chipsSexoValue,
                                                 ubicacion: _model
-                                                    .ciudadTextController.text,
+                                                            .dropDownProvinciaValue !=
+                                                        null
+                                                    ? '${_model.ciudadTextController.text}, ${_model.dropDownProvinciaValue}'
+                                                    : _model
+                                                        .ciudadTextController
+                                                        .text,
+                                                ubicacionGeoPoint:
+                                                    _model.ubicacionGeoPoint,
                                                 descripcion: _model
                                                     .descripcionTextController
                                                     .text,
