@@ -8,6 +8,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/market/componente_dialogo_imagen/componente_dialogo_imagen_widget.dart';
+import '/caballos/selector_mapa/selector_mapa_widget.dart';
+import '/custom_code/geocoding_service.dart';
+import '/flutter_flow/place.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -49,6 +52,8 @@ class _MarketModificarPublicacionWidgetState
           widget.docPublicacion!.listaURLFotos.toList().cast<String>();
       _model.listaFotos =
           widget.docPublicacion!.listaURLFotos.toList().cast<String>();
+      _model.ubicacionGeoPointSeleccionada =
+          widget.docPublicacion?.ubicacionGeoPoint;
       safeSetState(() {});
     });
 
@@ -1372,6 +1377,110 @@ class _MarketModificarPublicacionWidgetState
                                 ),
                               ),
                             ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 8.0, 16.0, 8.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  final result =
+                                      await Navigator.push<FFPlace>(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          SelectorMapaWidget(
+                                        ubicacionInicial:
+                                            _model.ubicacionGeoPointSeleccionada,
+                                      ),
+                                    ),
+                                  );
+                                  if (result != null) {
+                                    safeSetState(() {
+                                      _model.ubicacionSeleccionadaMapa =
+                                          result;
+                                      _model.ubicacionGeoPointSeleccionada =
+                                          result.latLng;
+                                      if (result.city.isNotEmpty) {
+                                        _model.txtFieldCiudadTextController
+                                            ?.text = result.city;
+                                      }
+                                      if (result.state.isNotEmpty) {
+                                        final provinciaNormalizada =
+                                            GeocodingService
+                                                .normalizarProvincia(
+                                                    result.state);
+                                        if (provinciaNormalizada !=
+                                            null) {
+                                          _model.dropDownProvinciaValue =
+                                              provinciaNormalizada;
+                                          _model.dropDownProvinciaValueController
+                                                  ?.value =
+                                              provinciaNormalizada;
+                                        }
+                                      }
+                                    });
+                                  }
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 50.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius:
+                                        BorderRadius.circular(20.0),
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context)
+                                              .primary,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.map_outlined,
+                                        color:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        size: 24.0,
+                                      ),
+                                      SizedBox(width: 8.0),
+                                      Text(
+                                        _model.ubicacionSeleccionadaMapa !=
+                                                    null ||
+                                                _model.ubicacionGeoPointSeleccionada !=
+                                                    null
+                                            ? 'Ubicación seleccionada en mapa'
+                                            : 'Seleccionar ubicación en mapa',
+                                        style:
+                                            FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts
+                                                      .readexPro(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                  ),
+                                                  color: FlutterFlowTheme
+                                                          .of(context)
+                                                      .primary,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                             Opacity(
                               opacity: 0.0,
                               child: Divider(
@@ -1467,6 +1576,8 @@ class _MarketModificarPublicacionWidgetState
                                           descripcion: _model
                                               .txtFieldDescripcionTextController
                                               .text,
+                                          ubicacionGeoPoint: _model
+                                              .ubicacionGeoPointSeleccionada,
                                         ),
                                         ...mapToFirestore(
                                           {

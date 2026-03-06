@@ -1044,52 +1044,113 @@ class _MarketPrincipalWidgetState extends State<MarketPrincipalWidget> {
                                   'Todas las Provincias') &&
                               (_model.filtroCiudad == null ||
                                   _model.filtroCiudad == '')))
-                        Align(
-                          alignment: AlignmentDirectional(1.0, 0.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 30.0, 0.0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                context.pushNamed(
-                                    NuevaPublicacionInicioWidget.routeName);
-                              },
-                              text: 'Publicar',
-                              icon: Icon(
-                                Icons.add_comment_rounded,
-                                size: 25.0,
-                              ),
-                              options: FFButtonOptions(
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 16.0, 0.0),
-                                iconAlignment: IconAlignment.end,
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      font: GoogleFonts.readexPro(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleMedium
-                                            .fontStyle,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              30.0, 0.0, 30.0, 0.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              // "Ver cerca mío" button
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  context.pushNamed(
+                                      MapaMarketWidget.routeName);
+                                },
+                                text: 'Ver cerca mío',
+                                icon: Icon(
+                                  Icons.map_outlined,
+                                  size: 22.0,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .override(
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        letterSpacing: 0.0,
+                                        fontWeight:
+                                            FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .fontWeight,
+                                        fontStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .fontStyle,
                                       ),
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleMedium
-                                          .fontStyle,
-                                    ),
-                                elevation: 0.0,
-                                borderRadius: BorderRadius.circular(8.0),
+                                  elevation: 0.0,
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).primary,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
                               ),
-                            ),
+                              // "Publicar" button
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  context.pushNamed(
+                                      NuevaPublicacionInicioWidget.routeName);
+                                },
+                                text: 'Publicar',
+                                icon: Icon(
+                                  Icons.add_comment_rounded,
+                                  size: 25.0,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 40.0,
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 0.0, 16.0, 0.0),
+                                  iconAlignment: IconAlignment.end,
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color:
+                                      FlutterFlowTheme.of(context).primary,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .titleMedium
+                                      .override(
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleMedium
+                                                  .fontStyle,
+                                        ),
+                                        letterSpacing: 0.0,
+                                        fontWeight:
+                                            FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .fontWeight,
+                                        fontStyle:
+                                            FlutterFlowTheme.of(context)
+                                                .titleMedium
+                                                .fontStyle,
+                                      ),
+                                  elevation: 0.0,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       if (!_model.modoBusqueda &&

@@ -77,3 +77,4 @@ export '/caballos/clinica/visita_veterinaria/visita_veterinaria_widget.dart'
     show VisitaVeterinariaWidget;
 export '/caballos/selector_mapa/selector_mapa_widget.dart'
     show SelectorMapaWidget;
+export '/market/mapa_market/mapa_market_widget.dart' show MapaMarketWidget;

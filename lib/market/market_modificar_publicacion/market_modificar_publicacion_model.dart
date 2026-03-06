@@ -1,5 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import 'market_modificar_publicacion_widget.dart'
     show MarketModificarPublicacionWidget;
 import 'package:carousel_slider/carousel_slider.dart';
@@ -8,6 +10,9 @@ import 'package:flutter/material.dart';
 class MarketModificarPublicacionModel
     extends FlutterFlowModel<MarketModificarPublicacionWidget> {
   ///  Local state fields for this page.
+
+  LatLng? ubicacionGeoPointSeleccionada;
+  FFPlace? ubicacionSeleccionadaMapa;
 
   List<String> listaFotosSeleccionadas = [];
   void addToListaFotosSeleccionadas(String item) =>

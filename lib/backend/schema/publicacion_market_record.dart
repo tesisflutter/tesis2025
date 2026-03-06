@@ -84,6 +84,11 @@ class PublicacionMarketRecord extends FirestoreRecord {
   int get iDCaballo => _iDCaballo ?? 0;
   bool hasIDCaballo() => _iDCaballo != null;
 
+  // "Ubicacion_GeoPoint" field.
+  LatLng? _ubicacionGeoPoint;
+  LatLng? get ubicacionGeoPoint => _ubicacionGeoPoint;
+  bool hasUbicacionGeoPoint() => _ubicacionGeoPoint != null;
+
   void _initializeFields() {
     _iDPublicacion = castToType<int>(snapshotData['ID_Publicacion']);
     _destacado = snapshotData['Destacado'] as bool?;
@@ -98,6 +103,7 @@ class PublicacionMarketRecord extends FirestoreRecord {
     _fechaPublicacion = snapshotData['Fecha_Publicacion'] as DateTime?;
     _precio = castToType<int>(snapshotData['Precio']);
     _iDCaballo = castToType<int>(snapshotData['ID_Caballo']);
+    _ubicacionGeoPoint = snapshotData['Ubicacion_GeoPoint'] as LatLng?;
   }
 
   static CollectionReference get collection =>
@@ -148,6 +154,7 @@ Map<String, dynamic> createPublicacionMarketRecordData({
   DateTime? fechaPublicacion,
   int? precio,
   int? iDCaballo,
+  LatLng? ubicacionGeoPoint,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -163,6 +170,7 @@ Map<String, dynamic> createPublicacionMarketRecordData({
       'Fecha_Publicacion': fechaPublicacion,
       'Precio': precio,
       'ID_Caballo': iDCaballo,
+      'Ubicacion_GeoPoint': ubicacionGeoPoint,
     }.withoutNulls,
   );
 
@@ -188,7 +196,8 @@ class PublicacionMarketRecordDocumentEquality
         listEquality.equals(e1?.listaURLFotos, e2?.listaURLFotos) &&
         e1?.fechaPublicacion == e2?.fechaPublicacion &&
         e1?.precio == e2?.precio &&
-        e1?.iDCaballo == e2?.iDCaballo;
+        e1?.iDCaballo == e2?.iDCaballo &&
+        e1?.ubicacionGeoPoint == e2?.ubicacionGeoPoint;
   }
 
   @override
@@ -205,7 +214,8 @@ class PublicacionMarketRecordDocumentEquality
         e?.listaURLFotos,
         e?.fechaPublicacion,
         e?.precio,
-        e?.iDCaballo
+        e?.iDCaballo,
+        e?.ubicacionGeoPoint,
       ]);
 
   @override

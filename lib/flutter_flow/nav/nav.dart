@@ -332,6 +332,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   ),
                 )),
         FFRoute(
+          name: MapaMarketWidget.routeName,
+          path: MapaMarketWidget.routePath,
+          builder: (context, params) => MapaMarketWidget(),
+        ),
+        FFRoute(
             name: MarketPublicacionSeleccionadaWidget.routeName,
             path: MarketPublicacionSeleccionadaWidget.routePath,
             builder: (context, params) => NavBarPage(

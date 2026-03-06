@@ -1,5 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/index.dart';
 import 'nueva_publicacion_producto_servicio_widget.dart'
     show NuevaPublicacionProductoServicioWidget;
@@ -8,6 +10,9 @@ import 'package:flutter/material.dart';
 class NuevaPublicacionProductoServicioModel
     extends FlutterFlowModel<NuevaPublicacionProductoServicioWidget> {
   ///  Local state fields for this page.
+
+  LatLng? ubicacionGeoPointSeleccionada;
+  FFPlace? ubicacionSeleccionadaMapa;
 
   List<String> uploadedPicsList = [];
   void addToUploadedPicsList(String item) => uploadedPicsList.add(item);

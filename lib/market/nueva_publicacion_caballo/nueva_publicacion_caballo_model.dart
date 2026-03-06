@@ -1,6 +1,8 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/lat_lng.dart';
+import '/flutter_flow/place.dart';
 import '/index.dart';
 import 'nueva_publicacion_caballo_widget.dart'
     show NuevaPublicacionCaballoWidget;
@@ -9,6 +11,9 @@ import 'package:flutter/material.dart';
 class NuevaPublicacionCaballoModel
     extends FlutterFlowModel<NuevaPublicacionCaballoWidget> {
   ///  Local state fields for this page.
+
+  LatLng? ubicacionGeoPointSeleccionada;
+  FFPlace? ubicacionSeleccionadaMapa;
 
   List<String> listaFotosCaballoSTATE = [];
   void addToListaFotosCaballoSTATE(String item) =>
